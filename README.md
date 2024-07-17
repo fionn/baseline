@@ -2,9 +2,13 @@
 
 A basic statusline for Neovim.
 
+<div align="center">
+    <img width="646" alt="Example baseline statusline in normal mode" src="https://github.com/user-attachments/assets/3f406bdc-40c5-41d4-acc3-b8055a22c1a1">
+</div>
+
 ## Overview
 
-We show mode, relative file path, Git branch if available, buffer, filetype, line, column, total lines and percentage, in order.
+We show mode, relative file path, modification flags, Git branch if available, buffer, filetype, line, column, total lines and percentage, in order.
 
 Git integration is via [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim), the only dependency, and it will fail gracefully if missing. We also show (buffer-based) clean / dirty state via an asterisk after the branch name.
 

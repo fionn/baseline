@@ -61,10 +61,10 @@ function M.git_status_string()
     if git.head == "" then
         return ""
     end
-    -- "Dirty" is specific to the buffer, not the repository.
+
     local dirty_symbol = ""
     -- We guard here because on startup the dictionary is not populated. We
-    -- assume if added changed, so do the rest.
+    -- assume if changed exists, so do the rest.
     if git.changed ~= nil then
         dirty_symbol = (git.changed ~= 0 or git.added ~= 0
                         or git.removed ~= 0) and "*" or ""
@@ -78,6 +78,8 @@ function M.statusline(self)
     local mode_string = M.modes[current_mode] or current_mode
     local mode_highlight = M.mode_highlights[current_mode:sub(0, 1)]
                            or M.mode_highlights.unknown
+
+    -- See :h 'statusline' for details of this format string.
     return table.concat {
         "%-6(", mode_highlight, " ", mode_string, " %#StatusLine#", "%)",
         "%< %f %(%m%w%r%q %)%(", self:git_status_string(), " %)%=",
@@ -93,8 +95,9 @@ Baseline = setmetatable(M, {
     end
 })
 
----@param parameters table
+---@param parameters? table
 function M.setup(parameters)
+    parameters = parameters or {}
     if parameters.modes then
         for k, v in pairs(parameters.modes) do
             M.modes[k] = v

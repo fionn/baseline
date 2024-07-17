@@ -1,17 +1,19 @@
 local M = {}
 
 M.mode_highlights = {
-    n = "%#StatusLineModeNormal#",
-    i = "%#StatusLineModeInsert#",
-    v = "%#StatusLineModeVisual#",
-    V = "%#StatusLineModeVisual#",
-    s = "%#StatusLineModeVisual#",
-    S = "%#StatusLineModeVisual#",
-    R = "%#StatusLineModeReplace#",
-    r = "%#StatusLineModeCommand#",
-    c = "%#StatusLineModeCommand#",
-    t = "%#StatusLineModeTerminal#",
-    ["!"] = "%#StatusLineModeTerminal#",
+    ["n"]   = "%#StatusLineModeNormal#",
+    ["i"]   = "%#StatusLineModeInsert#",
+    ["v"]   = "%#StatusLineModeVisual#",
+    ["V"]   = "%#StatusLineModeVisual#",
+    ["\22"] = "%#StatusLineModeVisual#",
+    ["s"]   = "%#StatusLineModeVisual#",
+    ["S"]   = "%#StatusLineModeVisual#",
+    ["\19"] = "%#StatusLineModeVisual#",
+    ["R"]   = "%#StatusLineModeReplace#",
+    ["r"]   = "%#StatusLineModeCommand#",
+    ["c"]   = "%#StatusLineModeCommand#",
+    ["t"]   = "%#StatusLineModeTerminal#",
+    ["!"]   = "%#StatusLineModeTerminal#",
     unknown = "%#StatusLineModeUnknown#"
 }
 

@@ -39,7 +39,7 @@ M.modes = {
     ["\19"]   = "SEL B",
     ["i"]     = "INS",
     ["ic"]    = "INS CMP",
-    ["ix"]    = "INS X",
+    ["ix"]    = "INX",
     ["R"]     = "REP",
     ["Rc"]    = "REP C",
     ["Rx"]    = "REP X",
@@ -109,5 +109,13 @@ function M.setup(parameters)
     vim.opt.statusline = "%!v:lua.Baseline()"
     vim.opt.showmode = false
 end
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+    group = vim.api.nvim_create_augroup("baseline", {clear = true}),
+    desc = "Redraw status on mode change",
+    callback = function()
+        vim.cmd.redrawstatus()
+    end
+})
 
 return M

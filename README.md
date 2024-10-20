@@ -45,21 +45,4 @@ Modes are displayed in highlight groups of the form `StatusLineModeX` where `X` 
 If we enter a mode that we do not know about, it will pass the raw mode string to the statusline and, if its prefix does not match existing mode strings (i.e. we cannot infer that it is a variant of a known mode), display it with the `StatusLineModeUnknown` highlight group.
 This is for the edge case where Neovim may in future introduce new modes.
 
-We make no attempt to style these highlight groups, only to expose them.
-Use something like
-```lua
-local highlights = {
-    StatusLineModeNormal   = {fg = "Black", bg = "NvimDarkBlue", bold = true},
-    StatusLineModeInsert   = {fg = "Black", bg = "Green", bold = true},
-    StatusLineModeVisual   = {fg = "Black", bg = "NvimDarkGrey4", bold = true},
-    StatusLineModeReplace  = {fg = "Black", bg = "NvimDarkRed", bold = true},
-    StatusLineModeCommand  = {fg = "NvimLightGrey4", bg = "Grey8", bold = true},
-    StatusLineModeTerminal = {link = "StatusLineModeCommand"},
-    StatusLineModeUnknown  = {fg = "Black", bg = "DarkOrange3", bold = true}
-}
-
-for group, options in pairs(highlights) do
-    vim.api.nvim_set_hl(0, group, options)
-end
-```
-for colours relatively consistent with the default theme.
+We style `StatusLine` and these highlight groups to be relatively consistent with the default theme.

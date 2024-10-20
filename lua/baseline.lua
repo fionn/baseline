@@ -110,12 +110,4 @@ function M.setup(parameters)
     vim.opt.showmode = false
 end
 
-vim.api.nvim_create_autocmd("ModeChanged", {
-    group = vim.api.nvim_create_augroup("baseline", {clear = true}),
-    desc = "Redraw status on mode change",
-    callback = function()
-        vim.cmd.redrawstatus()
-    end
-})
-
 return M

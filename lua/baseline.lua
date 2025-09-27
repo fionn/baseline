@@ -81,11 +81,12 @@ function M.statusline(self)
     local mode_highlight = M.mode_highlights[current_mode:sub(0, 1)]
                            or M.mode_highlights.unknown
 
+
     -- See :h 'statusline' for details of this format string.
     return table.concat {
         "%-6(", mode_highlight, " ", mode_string, " %*%)",
         "%< %f %(%m%w%r%q %)%(", self:git_status_string(), " %)%=",
-        "%n %y %15(%l:%c%V / %L%) %P"
+        "%{% &busy > 0 ? '◐ ' : '' %}%n %y %15(%l:%c%V / %L%) %P"
     }
 end
 

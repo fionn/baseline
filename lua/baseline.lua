@@ -87,6 +87,7 @@ function M.statusline(self)
         "%-6(", mode_highlight, " ", mode_string, " %*%)",
         "%< %f %(%m%w%r%q %)%(", self:git_status_string(), " %)%=",
         "%{% &busy > 0 ? '◐ ' : '' %}",
+        "%{% luaeval('(package.loaded[''vim.ui''] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or '''' ')%}",
         "%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}",
         "%n %y %15(%l:%c%V / %L%) %P"
     }

@@ -86,7 +86,9 @@ function M.statusline(self)
     return table.concat {
         "%-6(", mode_highlight, " ", mode_string, " %*%)",
         "%< %f %(%m%w%r%q %)%(", self:git_status_string(), " %)%=",
-        "%{% &busy > 0 ? '◐ ' : '' %}%n %y %15(%l:%c%V / %L%) %P"
+        "%{% &busy > 0 ? '◐ ' : '' %}",
+        "%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}",
+        "%n %y %15(%l:%c%V / %L%) %P"
     }
 end
 

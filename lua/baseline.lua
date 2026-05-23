@@ -96,8 +96,8 @@ end
 -- This is globally callable because it gets invoked via a v:lua-call outside
 -- the module.
 Baseline = setmetatable(M, {
-    __call = function(statusline)
-        return statusline:statusline()
+    __call = function(self)
+        return self:statusline()
     end
 })
 

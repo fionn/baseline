@@ -74,7 +74,7 @@ function M.git_status_string()
     return string.format("(%s%s)", git.head, dirty_symbol)
 end
 
-function M.statusline(self)
+function M.statusline()
     local current_mode = vim.api.nvim_get_mode().mode
     -- If we can't identify the mode, send the raw mode string.
     local mode_string = M.modes[current_mode] or current_mode
@@ -85,7 +85,7 @@ function M.statusline(self)
     -- See :h 'statusline' for details of this format string.
     return table.concat {
         "%-6(", mode_highlight, " ", mode_string, " %*%)",
-        "%< %f %(%m%w%r%q %)%(", self:git_status_string(), " %)%=",
+        "%< %f %(%m%w%r%q %)%(", M.git_status_string(), " %)%=",
         "%{% &busy > 0 ? '◐ ' : '' %}",
         "%{% luaeval('(package.loaded[''vim.ui''] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or '''' ')%}",
         "%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}",
@@ -97,7 +97,7 @@ end
 -- the module.
 Baseline = setmetatable(M, {
     __call = function(self)
-        return self:statusline()
+        return self.statusline()
     end
 })
 
